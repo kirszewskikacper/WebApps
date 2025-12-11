@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("postgresql://user:password@localhost:5432/mydb")
+}
+
+model Wpis {
+  id_wpis   Int         @id @default(autoincrement())
+  DataWpisu DateTime    @default(now())
+  OstAktual DateTime    @default(now()) @updatedAt
+  Autor     String      @db.VarChar(63)
+  Tytul     String      @db.VarChar(127)
+  Zawartosc String      @db.Text
+  KatId     Int
+  Kategoria Kategoria   @relation(fields: [KatId], references: [id_kat])
+  Komentarz Komentarz[]
+}
+
+model Kategoria {
+  id_kat   Int    @id @default(autoincrement())
+  NazwaKat String @db.VarChar(30)
+  Wpisy    Wpis[]
+}
+
+model Komentarz {
+  id_kom    Int      @id @default(autoincrement())
+  DataKom   DateTime @default(now())
+  AutorKom  String   @db.VarChar(255)
+  Zawartosc String?
+  WpisId    Int
+  Wpis      Wpis     @relation(fields: [WpisId], references: [id_wpis])
+}
