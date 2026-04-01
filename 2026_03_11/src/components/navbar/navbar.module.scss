@@ -1,0 +1,37 @@
+.Navbar {
+  height: 80px;
+  width: 100%;
+  background: saddlebrown;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+    gap: 2rem;
+
+    li {
+      a {
+        display: inline-block;
+        padding: 0.75rem;
+        font-size: 1.5rem;
+
+        color: black;
+        background: sandybrown;
+        text-decoration: none;
+        border-radius: 4px;
+
+        transition: background-color 0.2s ease-in-out;
+
+        &:hover {
+          background-color: peachpuff;
+        }
+      }
+    }
+  }
+}
